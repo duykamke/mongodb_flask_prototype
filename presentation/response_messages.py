@@ -1,0 +1,7 @@
+INVALID_INPUT_MESSAGE = "Wrong input format"
+INVALID_TOKEN_MESSAGE = "Invalid token type"
+MISSING_AUTHORIZATION_MESSAGE = "Authorization header missing"
+RESTRICTED_MESSAGE = "Restricted access"
+SUCCESS_MESSAGE = "Success"
+NOT_FOUND_FORMAT = "id {id} not found"
+EXPIRED_TOKEN_MESSAGE = "Token is already expired."
