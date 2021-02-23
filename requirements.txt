@@ -6,3 +6,6 @@ flask-cors==3.0.8
 flask-mongoengine==1.0.0
 flask-script==2.0.6
 python-dotenv==0.13.0
+Flask-PyMongo==2.3.0
+jsonpickle==2.0.0
+Flask-PynamoDB==0.0.2

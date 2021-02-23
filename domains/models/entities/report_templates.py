@@ -1,11 +1,10 @@
 from typing import Optional, List
 
-
 class ReportTemplate:
     def __init__(self,
                  type: str,
                  name: str,
-                 sub_sections: List[any],
+                 sub_sections: List[dict],
                  id: Optional[str] = None,
                  ):
         self._id = id
@@ -26,5 +25,5 @@ class ReportTemplate:
         return self._name
 
     @property
-    def sub_sections(self) -> List[any]:
+    def sub_sections(self) -> List[dict]:
         return self._sub_sections

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from mongoengine import errors
 
-from database import db
+from database import db_mongoengine as db
 from domains.models.entities.report_templates import ReportTemplate
 from domains.repositories.report_template_repository import IReportTemplateRepository
 

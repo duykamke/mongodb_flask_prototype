@@ -1,16 +1,20 @@
+import json
 import secrets
 import time
 
-from database import db
+from flask import jsonify
+
+from database import db_pynamodb as db
 from domains.models.entities.report_templates import ReportTemplate
-from infrastructures.database.models.report_template_model import ReportTemplateModel
+from infrastructures.database.models.report_template_model_pynamodb import ReportTemplateModel
 from manage import app
 
 
 def create_database() -> None:
     app.app_context().push()  # type: ignore
-    db.connection.drop_database('test_db')
 
+    ReportTemplateModel.delete_table()
+    ReportTemplateModel.create_table()
     populate_report()
     get_filtered_reports()
 
@@ -39,7 +43,7 @@ def timerfunc(func):
 @timerfunc
 def populate_report() -> None:
     foo = ['a', 'b', 'c', 'd', 'e']
-    for x in range(1000):
+    for x in range(100):
         ReportTemplateModel.add_report_template(ReportTemplate(
             type="node",
             name=secrets.choice(foo),
@@ -68,15 +72,13 @@ def populate_report() -> None:
                         }
                     ]
                 },
-            ],)
+            ], )
         )
 
 
 @timerfunc
 def get_filtered_reports() -> None:
-    templates = ReportTemplateModel.objects.filter(name="a")
-    print(templates.__len__())
-
+    templates = ReportTemplateModel.scan(ReportTemplateModel.name == 'a')
 
 if __name__ == '__main__':
     create_database()
